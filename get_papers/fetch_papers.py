@@ -5,11 +5,21 @@ from typing import List, Dict, Tuple
 def fetch_papers(query: str) -> List[Dict]:
     base_url = "https://pubmed.ncbi.nlm.nih.gov/api/query"
     response = requests.get(f"{base_url}?term={query}&format=abstract")
+
+    print(f"Status Code: {response.status_code}")
+    print(f"Response Text: {response.text[:500]}")  # Print the first 500 characters
     
     if response.status_code != 200:
         raise Exception("Failed to fetch data from PubMed API")
     
-    papers = response.json().get('results', [])
+    try:
+        papers = response.json().get('results', [])
+    except ValueError as e:
+        raise Exception(f"Failed to parse JSON: {e}")
+    # if response.status_code != 200:
+    #     raise Exception("Failed to fetch data from PubMed API")
+    
+    # papers = response.json().get('results', [])
     return papers
 
 def filter_non_academic_authors(papers: List[Dict]) -> List[Dict]:

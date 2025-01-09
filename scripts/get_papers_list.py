@@ -22,8 +22,10 @@ def main():
     if args.debug:
         print(f"Fetched details for {len(paper_details)} papers")
     
+    filtered_papers = filter_non_academic_authors(paper_details)
+    
     # Convert to DataFrame
-    df = pd.DataFrame(paper_details)
+    df = pd.DataFrame(filtered_papers)
     
     if args.file:
         df.to_csv(args.file, index=False)

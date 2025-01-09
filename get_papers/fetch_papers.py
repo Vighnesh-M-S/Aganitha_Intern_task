@@ -60,10 +60,11 @@ def filter_non_academic_authors(papers: List[Dict]) -> List[Dict]:
         company_affiliations = []
         
         for author in authors:
-            if "university" not in author['affiliation'].lower() and \
-               "lab" not in author['affiliation'].lower():
-                non_academic_authors.append(author['name'])
-                company_affiliations.append(author['affiliation'])
+            # Use .get() to handle missing keys
+            affiliation = author.get('affiliation', '').lower()
+            if "university" not in affiliation and "lab" not in affiliation:
+                non_academic_authors.append(author.get('name', 'Unknown Author'))
+                company_affiliations.append(author.get('affiliation', 'Unknown Affiliation'))
         
         if non_academic_authors:
             filtered_papers.append({
@@ -72,7 +73,7 @@ def filter_non_academic_authors(papers: List[Dict]) -> List[Dict]:
                 "Publication Date": paper['pub_date'],
                 "Non-academic Author(s)": ", ".join(non_academic_authors),
                 "Company Affiliation(s)": ", ".join(company_affiliations),
-                "Corresponding Author Email": paper.get('corresponding_author_email', '')
+                "Corresponding Author Email": paper.get('corresponding_author_email', 'Unknown Email')
             })
     
     return filtered_papers

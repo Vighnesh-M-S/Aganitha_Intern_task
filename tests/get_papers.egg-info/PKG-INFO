@@ -1,0 +1,8 @@
+Metadata-Version: 2.1
+Name: get-papers
+Version: 0.1.0
+Summary: A tool to fetch and process PubMed papers.
+Author: VIGHNESH M S
+Author-email: vighneshms21@gmail.com
+Requires-Dist: requests
+Requires-Dist: pandas

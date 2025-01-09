@@ -1,6 +1,6 @@
 import argparse
 import pandas as pd
-from get_papers.fetch_papers import fetch_papers, filter_non_academic_authors
+from get_papers.fetch_papers import fetch_papers, filter_non_academic_authors, fetch_paper_details
 
 def main():
     parser = argparse.ArgumentParser(description="Fetch research papers from PubMed.")
@@ -13,10 +13,17 @@ def main():
     if args.debug:
         print(f"Fetching papers for query: {args.query}")
     
-    papers = fetch_papers(args.query)
-    filtered_papers = filter_non_academic_authors(papers)
+    paper_ids = fetch_papers(args.query)
+    if args.debug:
+        print(f"Fetched {len(paper_ids)} paper IDs")
     
-    df = pd.DataFrame(filtered_papers)
+    # Fetch detailed paper information
+    paper_details = fetch_paper_details([paper["id"] for paper in paper_ids])
+    if args.debug:
+        print(f"Fetched details for {len(paper_details)} papers")
+    
+    # Convert to DataFrame
+    df = pd.DataFrame(paper_details)
     
     if args.file:
         df.to_csv(args.file, index=False)

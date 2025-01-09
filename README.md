@@ -20,8 +20,8 @@ project/
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/get_papers.git
-   cd get_papers
+   git clone https://github.com/Vighnesh-M-S/Aganitha_Intern_task
+   cd Aganitha_Intern_task
 
 2. Install dependencies:
    ```bash
@@ -33,11 +33,14 @@ project/
    ```bash
    poetry run python3 scripts/get_papers_list.py "<search_query>" -f <output_file> -d
 
+
 ## Command-Line Arguments
 | Argument      | Description                                | Example                          |
 |---------------|--------------------------------------------|----------------------------------|
-| --query       | Search query for PubMed                    | "cancer research"                |
-| --output      | Name of the output CSV file                | "pubmed_data.csv"                |
+| query         | Search query for PubMed                    | "cancer research"                |
+| -f, --file    | Output filename for CSV                    | "output.csv"                     |
+| -d, --debug   | Enable debug output                        | N/A                               |
+
 
 2. Example:
    ```bash

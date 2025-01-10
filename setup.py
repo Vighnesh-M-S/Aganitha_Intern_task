@@ -1,8 +1,11 @@
 from setuptools import setup, find_packages
 
+with open("README.md", "r") as f:
+    desc = f.read()
+
 setup(
     name="get-papers",
-    version="0.1.0",
+    version="0.3.0",
     description="A tool to fetch and process PubMed papers.",
     author="VIGHNESH M S",
     author_email="vighneshms21@gmail.com",
@@ -12,5 +15,8 @@ setup(
         "console_scripts": [
             "get-papers=scripts.get_papers:main"
         ]
-    }
+    },
+    long_description = desc,
+    long_description_type = "text/markdown",
+
 )

@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="get-papers",
-    version="0.3.0",
+    version="0.3.1",
     description="A tool to fetch and process PubMed papers.",
     author="VIGHNESH M S",
     author_email="vighneshms21@gmail.com",
